@@ -1,0 +1,19 @@
+{
+  "name": "session-based-auth",
+  "module": "./src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "format": "npx @biomejs/biome format --write ./src"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
