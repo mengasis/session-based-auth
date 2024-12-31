@@ -1,10 +1,13 @@
 import express from 'express';
-import routes from './routes';
+import publicRoutes from './routes/publicRoutes';
+import authRoutes from './routes/authRoutes';
+
 const app = express();
 
 app.use(express.json());
 
-app.use('/auth', routes);
+app.use('/', publicRoutes);
+app.use('/auth', authRoutes)
 
 const PORT = process.env.PORT || 3000;
 
