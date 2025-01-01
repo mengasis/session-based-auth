@@ -4,6 +4,7 @@
   "type": "module",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@types/bcrypt": "^5.0.2",
     "@types/bun": "latest",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
@@ -15,9 +16,16 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "format": "npx @biomejs/biome format --write ./src"
+    "start": "bun run src/index.ts",
+    "format": "npx @biomejs/biome format --write ./src",
+    "test": "bun test",
+    "redis:start": "docker run --name redis-server -p 6379:6379 -d redis:latest",
+    "redis:stop": "docker stop redis-server && docker rm redis-server"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "redis": "^4.7.0",
+    "uuid": "^11.0.3"
   }
 }
