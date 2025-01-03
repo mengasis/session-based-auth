@@ -1,0 +1,70 @@
+### Health Check
+# Check if the server is running correctly.
+GET http://localhost:3000/health
+
+###
+
+### Register a User
+# Register a new user with email and password.
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "test2@example.com",
+  "password": "password123"
+}
+
+###
+
+### Register Duplicate User
+# Attempt to register a user with an already registered email.
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+###
+
+### User Login
+# Log in with the previously registered user and save the cookie.
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+###
+
+### Login Failed
+# Attempt to log in with invalid credentials.
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "invalid@example.com",
+  "password": "wrongpassword"
+}
+
+### Get User Profile
+# Retrieve the profile of the authenticated user.
+# This endpoint requires a valid session cookie (`sessionId`) to be sent in the request.
+GET http://localhost:3000/auth/profile
+Cookie: sessionId=<your_session_id_here>
+
+###
+
+### User Logout
+# Log out using the session cookie obtained during login.
+POST http://localhost:3000/auth/logout
+Cookie: sessionId=<your_session_id_here>
+
+###
+
+### Logout Without Cookie
+# Attempt to log out without a valid session cookie.
+POST http://localhost:3000/auth/logout
