@@ -19,7 +19,7 @@ export class AuthService {
   private sessionKeyPrefix = 'session_';
 
   registerUser = async (email: string, password: string) => {
-    const emailKey = `${this.userKeyPrefix}${email}`;
+    const emailKey = `${this.emailKeyPrefix}${email}`;
     const isUserRegistered = await redisClient.get(emailKey);
 
     if (isUserRegistered) {
@@ -59,7 +59,6 @@ export class AuthService {
 
     const user: User = JSON.parse(userData);
     const isPasswordValid = await comparePassword(user.password, password);
-
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }

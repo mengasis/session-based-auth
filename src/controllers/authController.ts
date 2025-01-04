@@ -24,7 +24,7 @@ export class AuthController {
         password,
       );
 
-      res.cookie('sessionId', sessionId, { httpOnly: true, secure: true });
+      res.cookie('sessionId', sessionId, { httpOnly: true, secure: true});
       res.status(200).json({ message: 'Login Successful' });
     } catch (error) {
       next(error);
@@ -33,7 +33,7 @@ export class AuthController {
 
   logout = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { sessionId } = req.cookies;
+      const sessionId = req.cookies.sessionId;
 
       if (!sessionId) {
         throw new UnauthorizedException('No session cookie provided');
@@ -49,7 +49,8 @@ export class AuthController {
 
   getProfile = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { sessionId } = req.cookies;
+      console.log('GET Profile', req.cookies)
+      const sessionId = req.cookies.sessionId;
 
       if (!sessionId) {
         throw new UnauthorizedException('No session cookie provided');

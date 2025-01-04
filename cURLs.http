@@ -10,18 +10,6 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "email": "test2@example.com",
-  "password": "password123"
-}
-
-###
-
-### Register Duplicate User
-# Attempt to register a user with an already registered email.
-POST http://localhost:3000/auth/register
-Content-Type: application/json
-
-{
   "email": "test@example.com",
   "password": "password123"
 }
@@ -40,21 +28,12 @@ Content-Type: application/json
 
 ###
 
-### Login Failed
-# Attempt to log in with invalid credentials.
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-
-{
-  "email": "invalid@example.com",
-  "password": "wrongpassword"
-}
 
 ### Get User Profile
 # Retrieve the profile of the authenticated user.
 # This endpoint requires a valid session cookie (`sessionId`) to be sent in the request.
 GET http://localhost:3000/auth/profile
-Cookie: sessionId=<your_session_id_here>
+Cookie: sessionId=32698f24-da04-4f98-8428-40e94736d26a
 
 ###
 
