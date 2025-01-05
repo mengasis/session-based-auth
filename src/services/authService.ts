@@ -2,10 +2,17 @@ import redisClient from '../config/redisClient';
 import { v4 as uuidv4 } from 'uuid';
 import { comparePassword, hashPassword } from '../utils/hashHelper';
 import {
+  BadRequestException,
   ConflictException,
   NotFoundException,
   UnauthorizedException,
 } from '../utils/exceptions';
+import {
+  isValidEmail,
+  isValidPassword,
+  validateEmail,
+  validatePassword,
+} from '../utils/validate';
 
 interface User {
   id: string;
@@ -19,6 +26,14 @@ export class AuthService {
   private sessionKeyPrefix = 'session_';
 
   registerUser = async (email: string, password: string) => {
+    if (!isValidEmail(email)) {
+      throw new BadRequestException('Invalid email');
+    }
+
+    if (!isValidPassword(password)) {
+      throw new BadRequestException('Invalid password');
+    }
+
     const emailKey = `${this.emailKeyPrefix}${email}`;
     const isUserRegistered = await redisClient.get(emailKey);
 
@@ -37,6 +52,14 @@ export class AuthService {
   };
 
   validateAndCreateSession = async (email: string, password: string) => {
+    if (!isValidEmail(email)) {
+      throw new BadRequestException('Invalid email');
+    }
+
+    if (!isValidPassword(password)) {
+      throw new BadRequestException('Invalid password');
+    }
+
     const emailKey = `${this.emailKeyPrefix}${email}`;
     const userId = await redisClient.get(emailKey);
 
