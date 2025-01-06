@@ -49,7 +49,6 @@ export class AuthController {
 
   getProfile = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('GET Profile', req.cookies)
       const sessionId = req.cookies.sessionId;
 
       if (!sessionId) {

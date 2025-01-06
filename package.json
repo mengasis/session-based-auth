@@ -7,6 +7,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/bun": "latest",
     "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
@@ -17,7 +18,8 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "start": "bun run --watch src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
     "format": "npx @biomejs/biome format --write ./src",
     "test": "bun test",
     "redis:start": "docker run --name redis-server -p 6379:6379 -d redis:latest",
@@ -26,6 +28,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "redis": "^4.7.0",
     "uuid": "^11.0.3"
